@@ -1,22 +1,6 @@
-# Docker Node MongoDB Example
 
-> Simple example of a dockerized Node/Mongo app
+<h1> Nuxt Mongo App Template </h1>
 
-![Image](https://i.ibb.co/4Fgt31L/demo.gif)
+Mongo Node api came from: 
 
-## Quick Start
-
-```bash
-# Run in Docker
-docker-compose up
-# use -d flag to run in background
-
-# Tear down
-docker-compose down
-
-# To be able to edit files, add volume to compose file
-volumes: ['./:/usr/src/app']
-
-# To re-build
-docker-compose build
-```
+https://github.com/bradtraversy/docker-node-mongo
