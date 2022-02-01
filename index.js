@@ -25,7 +25,6 @@ const Item = require('./models/Item');
 const User = require('./models/User');
 
 app.get('/', (req, res) => {
-  console.log('home')
   Item.find()
     .then(items => res.render('index', { items }))
     .catch(err => res.status(404).json({ msg: 'No items found' }));
@@ -40,12 +39,10 @@ app.post('/item/add', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  console.log('login')
   res.render('login', {})
 });
 
 app.get('/register', (req, res) => {
-  console.log('register')
   res.render('register', {})
 });
 
