@@ -1,16 +1,20 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const authenticate = require('./middlewares/authenticate');
+const express = require('express')
+const mongoose = require('mongoose')
+const authenticate = require('./middlewares/authenticate')
+const viewRouter = require('./viewRouter')
+const apiRouter = require('./apiRouter')
 
-const app = express();
+const app = express()
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }))
 // middleware for json body parsing
 app.use(express.json())
 // middleware for authenticatio
-app.use(authenticate);
+app.use(authenticate)
+app.use('/api', apiRouter)
+app.use('/', viewRouter)
 
 // Connect to MongoDB
 mongoose
@@ -19,48 +23,8 @@ mongoose
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err))
 
-const Item = require('./models/Item');
-const User = require('./models/User');
+const port = 3000
 
-app.get('/', (req, res) => {
-  Item.find()
-    .then(items => res.render('index', { items }))
-    .catch(err => res.status(404).json({ msg: 'No items found' }));
-});
-
-app.post('/item/add', (req, res) => {
-  const newItem = new Item({
-    name: req.body.name
-  });
-
-  newItem.save().then(item => res.redirect('/'));
-});
-
-app.get('/login', (req, res) => {
-  res.render('login', {})
-});
-
-app.get('/register', (req, res) => {
-  res.render('register', {})
-});
-
-app.post('/user/login', (req, res) => {
-  User.find(user => user.password == req.body.password)
-    .then(user => res.redirect('/'))
-    .catch(err => res.redirect('/register'));
-});
-
-app.post('/user/register', (req, res) => {
-  const newUser = new User({
-    login: req.body.login,
-    password: req.body.password
-  });
-
-  newUser.save().then(user => res.redirect('/login'));
-});
-
-const port = 3000;
-
-app.listen(port, () => console.log('Server running...'));
+app.listen(port, () => console.log('Server running...'))
