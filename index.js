@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const authenticate = require('./middlewares/authenticate')
+const errorHandler = require('./middlewares/errorHandler')
 const viewRouter = require('./viewRouter')
 const apiRouter = require('./apiRouter')
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(authenticate)
 app.use('/api', apiRouter)
 app.use('/', viewRouter)
+app.use(errorHandler)
 
 // Connect to MongoDB
 mongoose

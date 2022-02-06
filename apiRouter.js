@@ -1,10 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const User = require('./models/User');
-const Item = require('./models/Item');
 const CreateItem = require('./controllers/CreateItem');
 
-router.post('/item', CreateItem.handle);
+// Error handler middleware for async controller
+const asyncHandler = fn => (req, res, next) => {
+  return Promise
+      .resolve(fn(req, res, next))
+      .catch(next);
+};
+
+router.post('/item', asyncHandler(CreateItem.handle));
 
 router.post('/user/login', async (req, res) => {
   await User.find(user => user.password == req.body.password)
