@@ -1,17 +1,57 @@
 {
-  "name": "docker-node-mongo",
-  "version": "1.0.0",
-  "description": "",
+  "name": "blog-cms-api",
+  "version": "3.0.0",
+  "description": "api com o banco de dados do blog e cms",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "jest --no-cache",
+    "build-ts": "rm -rf dist/ && tsc",
+    "start": "npm run serve",
+    "serve": "node dist/index.js",
+    "watch-node": "nodemon",
+    "watch-ts": "tsc -w"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "typescript",
+    "node",
+    "express",
+    "typescript",
+    "tslint"
+  ],
+  "author": "plinioc",
   "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.16.1",
+    "@types/node": "^14.6.1",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "jest": "^26.4.2",
+    "nodemon": "^1.18.10",
+    "prettier": "1.19.1",
+    "ts-jest": "^26.4.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^4.2.4"
+  },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^26.0.14",
+    "@types/mongoose": "^5.11.97",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "axios": "^0.21.0",
+    "bcrypt": "^3.0.5",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
-    "express": "^4.17.2",
-    "mongoose": "^6.1.8"
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "express-winston": "^3.1.0",
+    "http-status-codes": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8",
+    "reflect-metadata": "^0.1.13",
+    "strong-error-handler": "^4.0.0"
   }
 }
