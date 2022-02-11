@@ -1,13 +1,15 @@
 {
   "name": "blog-cms-api",
   "version": "3.0.0",
-  "description": "api com o banco de dados do blog e cms",
+  "description": "Mongo Api Nuxt App",
   "main": "index.js",
   "scripts": {
     "test": "jest --no-cache",
-    "build-ts": "rm -rf dist/ && tsc",
+    "build": "npm run clean && tsc && npm run copy-files",
     "start": "npm run serve",
     "serve": "node dist/index.js",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.html src/**/*.css dist/",
     "watch-node": "nodemon",
     "watch-ts": "tsc -w"
   },
@@ -15,7 +17,6 @@
     "typescript",
     "node",
     "express",
-    "typescript",
     "tslint"
   ],
   "author": "plinioc",
@@ -25,12 +26,14 @@
     "@types/cors": "^2.8.10",
     "@types/express": "^4.16.1",
     "@types/node": "^14.6.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.21.2",
     "jest": "^26.4.2",
     "nodemon": "^1.18.10",
     "prettier": "1.19.1",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.4.0",
     "ts-node": "^8.0.3",
     "typescript": "^4.2.4"
